@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Fake News e IA</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9fafb;
+      color: #333;
+      font-size: 1.2rem;
+    }
+    header {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    header p {
+      font-size: 1.4rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    section {
+      max-width: 1000px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+      line-height: 1.8;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #2563eb;
+    }
+    .cta {
+      text-align: center;
+      margin: 5rem 0;
+    }
+    .cta a {
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border-radius: 10px;
+      font-size: 1.5rem;
+      transition: 0.3s;
+    }
+    .cta a:hover {
+      background: #1d4ed8;
+    }
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: #f1f5f9;
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fake News e Inteligência Artificial</h1>
+    <p>Descubra como a desinformação impacta nossa sociedade e como a inteligência artificial pode ajudar a combatê-la.</p>
+  </header>
+
+  <section>
+    <h2> O impacto das Fake News</h2>
+    <p>
+      As fake news influenciam opiniões, distorcem informações e podem causar sérios problemas sociais, políticos e de saúde pública.
+      Elas se espalham rapidamente nas redes sociais, confundindo as pessoas e dificultando a tomada de decisões conscientes.
+    </p>
+  </section>
+
+  <section>
+    <h2> O que é Inteligência Artificial?</h2>
+    <p>
+      A Inteligência Artificial (IA) é uma área da ciência da computação que cria sistemas capazes de simular a inteligência humana.
+      Ela pode aprender padrões, analisar informações e tomar decisões com base em dados, tornando-se uma ferramenta poderosa em diversos setores.
+    </p>
+  </section>
+
+  <section>
+    <h2>Nossa IA contra Fake News</h2>
+    <p>
+      Nós desenvolvemos uma IA capaz de coletar notícias parecidas, analisar seus textos e dar uma avaliação de <strong>1 a 10</strong>.
+      Essa nota indica a confiabilidade do conteúdo, ajudando a diferenciar informações verdadeiras de conteúdos suspeitos.
+    </p>
+  </section>
+
+  <div class="cta">
+    <a href="check">Comece a usar!</a>
+  </div>
+
+  <footer>
+  <footer class="text-center py-4 text-sm text-gray-500">
+    © 2025 - Projeto Mostra Cientifica 2025<br>Arthur Witt<br>Yuri Sirtoli<br>Rafael Becker
+  </footer>  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>

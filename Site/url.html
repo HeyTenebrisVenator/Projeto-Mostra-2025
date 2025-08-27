@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detector de FN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+  <header class="bg-white shadow-md w-full py-4 px-6 fixed top-0 left-0">
+    <h1 class="text-2xl font-bold text-gray-800"><a href="title">Inserir títulos</a></h1>
+  </header>
+  <main class="flex-grow flex items-center justify-center px-4">
+    <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-lg text-center">
+      <p class="text-gray-600 mb-4">Insira a URL desejada abaixo:</p>
+      
+      <input 
+        type="text" 
+        placeholder="URL:"
+        id="inp"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none text-gray-800 mb-4"
+      >
+
+      <button class="w-full py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition" onmousedown="send_URL()">
+        Enviar
+      </button>
+      <h1 id="h1style" style="color: rgb(203, 115, 0);"></h1>
+
+    </div>
+  </main>
+
+  <footer class="text-center py-4 text-sm text-gray-500">
+    © 2025 - Projeto Mostra Cientifica 2025<br>Arthur Witt<br>Yuri Sirtoli<br>Rafael Becker
+  </footer>
+
+</body>
+</html>
