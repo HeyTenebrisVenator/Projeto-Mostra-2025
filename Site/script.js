@@ -1,7 +1,7 @@
 async function send_URL() {
     try {
         const info = document.getElementById("inp").value;
-        const response = await fetch("http://fndetector.com/send_url?data=" + encodeURIComponent(info));
+        const response = await fetch("http://fndetector.online/send_url?data=" + encodeURIComponent(info));
         document.getElementById("h1style").textContent ="Processando..."
         document.getElementById("h1style").style ="color: rgb(203, 115, 0);"
         
@@ -23,7 +23,7 @@ async function send_Title() {
         const info = document.getElementById("inp").value;
         document.getElementById("h1style").textContent ="Processando..."
         document.getElementById("h1style").style ="color: rgb(203, 115, 0);"
-        const response = await fetch("http://fndetector.com/send_title?data=" + encodeURIComponent(info));
+        const response = await fetch("http://fndetector.online/send_title?data=" + encodeURIComponent(info));
         
         if (!response.ok) {
             document.getElementById("h1style").textContent ="ERRO"
@@ -37,3 +37,4 @@ async function send_Title() {
     }
 
 }
+
