@@ -1,5 +1,6 @@
 print("Importando bibliotecas")
 import requests
+import filtrador
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import nltk
@@ -49,6 +50,7 @@ def body(corpo):
         try:
             lista_urls.append(item['link'])
             noticia = requests.get(item['link'], timeout=5).text
+            noticia = filtrador.html_para_texto_limpo(noticia)
             noticia = noticia.split()
             noticia = set(noticia)
             final = ""
@@ -70,10 +72,10 @@ def body(corpo):
         lista_verificada.append(f"{similaridade:.2f}")
         print(sim)
         total_calculo += sim 
-    report = f"REPORT FINAL:<br><br>Número de páginas coletadas: 5<br>URLs analisadas: {lista_urls[0]}'  -  Similaridade: {lista_verificada[0]}'<br>{lista_urls[1]}  -  Similaridade: {lista_verificada[1]}<br>{lista_urls[2]}  -  Similaridade: {lista_verificada[2]}<br>{lista_urls[3]}  -  Similaridade: {lista_verificada[3]}<br>{lista_urls[4]}  -  Similaridade: {lista_verificada[4]}<br>Resultado da análise: {total_calculo}"
+    report = f"REPORT FINAL:<br><br>Número de páginas coletadas: 5<br>URLs analisadas: {lista_urls[0]}'  -  Similaridade: {lista_verificada[0]}'<br>{lista_urls[1]}  -  Similaridade: {lista_verificada[1]}<br>{lista_urls[2]}  -  Similaridade: {lista_verificada[2]}<br>{lista_urls[3]}  -  Similaridade: {lista_verificada[3]}<br>{lista_urls[4]}  -  Similaridade: {lista_verificada[4]}<br>Resultado da análise: <br><h1 style=\"color: rgb(0, 0, 300);\">{total_calculo}"
     return report
 def url(url):
     print("Requisitando URL")
     noticia = requests.get(url, timeout=5).text
-    noticia = noticia.replace(" ", "+").replace("\n","+")
+    noticia = filtrador.html_para_texto_limpo(noticia)
     body(noticia)
