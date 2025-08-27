@@ -23,6 +23,7 @@ def preprocessar(texto):
 
 
 def body(corpo):
+    corpo = corpo.lower()
     tamanho = corpo.split(" ")
     tamanho = len(tamanho)
     total_calculo = 0
@@ -48,6 +49,12 @@ def body(corpo):
         try:
             lista_urls.append(item['link'])
             noticia = requests.get(item['link'], timeout=5).text
+            noticia = noticia.split()
+            noticia = set(noticia)
+            final = ""
+            for dados in noticia:
+                final = f"{final} {dados}"
+            noticia = final.lower()
         except:
             print("Houve algum erro")
             pass
