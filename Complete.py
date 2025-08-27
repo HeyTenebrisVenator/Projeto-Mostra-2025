@@ -37,7 +37,7 @@ def body(corpo):
     API_KEY = 'AIzaSyD6cZy1_J5N-O97bhcX6aqqKbP3_wqfk58'
     SEARCH_ENGINE_ID = '30854cad23c464de8'
     query = part_1.replace(" ","+")
-    url = f'https://www.googleapis.com/customsearch/v1?q={query}&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
+    url = f'https://www.googleapis.com/customsearch/v1?q={query}+-site:agenciabrasil.ebc.com.br+-site:*.instagram.com&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
     print(url)
     print("Feito")
     response = requests.get(url, timeout=5)
