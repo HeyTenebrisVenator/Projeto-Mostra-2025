@@ -1,5 +1,6 @@
 print("Importando bibliotecas")
 import requests
+import Database
 import filtrador
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -35,7 +36,7 @@ def body(corpo):
     if tamanho >= 50:
         part_1 = part_1[:50]
     print("definindo corpo da notícia")
-    API_KEY = '#API OCULTA#'
+    API_KEY = 'AIzaSyD6cZy1_J5N-O97bhcX6aqqKbP3_wqfk58'
     SEARCH_ENGINE_ID = '30854cad23c464de8'
     query = part_1.replace(" ","+")
     url = f'https://www.googleapis.com/customsearch/v1?q={query}+-site:agenciabrasil.ebc.com.br+-site:*.instagram.com&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
@@ -72,11 +73,14 @@ def body(corpo):
         lista_verificada.append(f"{similaridade:.2f}")
         print(sim)
         total_calculo += sim 
-    report = f"REPORT FINAL:<br><br>Número de páginas coletadas: 5<br>URLs analisadas: {lista_urls[0]}'  -  Similaridade: {lista_verificada[0]}'<br>{lista_urls[1]}  -  Similaridade: {lista_verificada[1]}<br>{lista_urls[2]}  -  Similaridade: {lista_verificada[2]}<br>{lista_urls[3]}  -  Similaridade: {lista_verificada[3]}<br>{lista_urls[4]}  -  Similaridade: {lista_verificada[4]}<br>Resultado da análise: <br><h1 style=\"color: rgb(0, 0, 300);\">{total_calculo}"
+    try:
+        Database.save_in_db(f"INSERT INTO `mostras` (`ID`, `Info`, `Dia`, `Resultado`, `URL1`, `URL2`, `URL3`, `URL4`, `URL5`) VALUES (NULL, '{noticia}', current_timestamp(), '{total_calculo}', '{lista_urls[0]}', '{lista_urls[1]}', '{lista_urls[2]}', '{lista_urls[3]}', '{lista_urls[4]}');")
+    except:
+        print("ERRO AO SALVAR NO BANCO DE DADOS")
+    report = f"REPORT FINAL:<br><br>Número de páginas coletadas: 5<br>URLs analisadas: {lista_urls[0]}'  -  Similaridade: {lista_verificada[0]}'<br>{lista_urls[1]}  -  Similaridade: {lista_verificada[1]}<br>{lista_urls[2]}  -  Similaridade: {lista_verificada[2]}<br>{lista_urls[3]}  -  Similaridade: {lista_verificada[3]}<br>{lista_urls[4]}  -  Similaridade: {lista_verificada[4]}<br>Resultado da análise: <br><h1 style=\"color: rgb(0, 0, 300);\">{total_calculo}</h1>"
     return report
 def url(url):
     print("Requisitando URL")
     noticia = requests.get(url, timeout=5).text
     noticia = filtrador.html_para_texto_limpo(noticia)
-
     body(noticia)

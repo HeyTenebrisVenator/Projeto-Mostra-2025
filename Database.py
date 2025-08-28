@@ -10,7 +10,7 @@
 
 import mysql.connector
 
-def save_in_db(url, rating):
+def save_in_db(query):
     try:
         cnx = mysql.connector.connect(
             host='127.0.0.1',
@@ -21,7 +21,7 @@ def save_in_db(url, rating):
         print("Conexão bem sucedida!")
 
         cursor = cnx.cursor()
-        cursor.execute(f"INSERT INTO `mostra` (`Dia`, `Url`, `Rating`, `Id`) VALUES (current_timestamp(), '{url}', '{rating}', NULL);")
+        cursor.execute(query)
 
         cnx.commit()  # <- ESSENCIAL!
         print("Inserção realizada com sucesso!")
