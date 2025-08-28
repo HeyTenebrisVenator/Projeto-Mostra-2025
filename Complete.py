@@ -35,7 +35,7 @@ def body(corpo):
     if tamanho >= 50:
         part_1 = part_1[:50]
     print("definindo corpo da notícia")
-    API_KEY = 'AIzaSyD6cZy1_J5N-O97bhcX6aqqKbP3_wqfk58'
+    API_KEY = '#API OCULTA#'
     SEARCH_ENGINE_ID = '30854cad23c464de8'
     query = part_1.replace(" ","+")
     url = f'https://www.googleapis.com/customsearch/v1?q={query}+-site:agenciabrasil.ebc.com.br+-site:*.instagram.com&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
@@ -78,4 +78,5 @@ def url(url):
     print("Requisitando URL")
     noticia = requests.get(url, timeout=5).text
     noticia = filtrador.html_para_texto_limpo(noticia)
+
     body(noticia)
