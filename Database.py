@@ -8,15 +8,20 @@
 #banco de dados: Mostra
 # tabela: mostra
 
+import os
+
 import mysql.connector
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def save_in_db(query):
     try:
         cnx = mysql.connector.connect(
-            host='127.0.0.1',
-            user='root',
-            password='',
-            database='Mostra'
+            host=os.getenv('MYSQL_HOST', '127.0.0.1'),
+            user=os.getenv('MYSQL_USER', 'root'),
+            password=os.getenv('MYSQL_PASSWORD', ''),
+            database=os.getenv('MYSQL_DATABASE', 'Mostra')
         )
         print("Conexão bem sucedida!")
 

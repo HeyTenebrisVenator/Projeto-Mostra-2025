@@ -1,5 +1,9 @@
 print("Importando bibliotecas")
+import os
+
 import requests
+from dotenv import load_dotenv
+
 import Database
 import filtrador
 from sklearn.feature_extraction.text import CountVectorizer
@@ -7,6 +11,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 import nltk
 from nltk.corpus import stopwords
 import string
+
+load_dotenv()
 
 def preprocessar(texto):
     print("Realizando pré-processamento")
@@ -36,8 +42,10 @@ def body(corpo):
     if tamanho >= 50:
         part_1 = part_1[:50]
     print("definindo corpo da notícia")
-    API_KEY = 'AIzaSyD6cZy1_J5N-O97bhcX6aqqKbP3_wqfk58'
-    SEARCH_ENGINE_ID = '30854cad23c464de8'
+    API_KEY = os.getenv('GOOGLE_API_KEY')
+    SEARCH_ENGINE_ID = os.getenv('GOOGLE_SEARCH_ENGINE_ID')
+    if not API_KEY or not SEARCH_ENGINE_ID:
+        return 'Configure GOOGLE_API_KEY e GOOGLE_SEARCH_ENGINE_ID antes de executar a análise.'
     query = part_1.replace(" ","+")
     url = f'https://www.googleapis.com/customsearch/v1?q={query}+-site:agenciabrasil.ebc.com.br+-site:*.instagram.com&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
     print(url)
@@ -83,4 +91,4 @@ def url(url):
     print("Requisitando URL")
     noticia = requests.get(url, timeout=5).text
     noticia = filtrador.html_para_texto_limpo(noticia)
-    body(noticia)
+    return body(noticia)
