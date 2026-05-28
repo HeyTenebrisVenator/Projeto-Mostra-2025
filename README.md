@@ -152,7 +152,3 @@ http://localhost:80
 - Arthur Witt
 - Yuri Sirtoli
 - Rafael Becker
-
-## Licença
-
-Este projeto ainda não possui uma licença definida. Antes de reutilizar o código publicamente, recomenda-se adicionar um arquivo `LICENSE` ao repositório.
