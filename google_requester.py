@@ -1,8 +1,16 @@
-import requests
+import os
 
-API_KEY = 'AIzaSyD6cZy1_J5N-O97bhcX6aqqKbP3_wqfk58'
-SEARCH_ENGINE_ID = '30854cad23c464de8'
-query = 'Pedido de asilo à Argentina de Milei? A repercussão do indiciamento'.replace(" ", '+')
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv('GOOGLE_API_KEY')
+SEARCH_ENGINE_ID = os.getenv('GOOGLE_SEARCH_ENGINE_ID')
+
+if not API_KEY or not SEARCH_ENGINE_ID:
+    raise RuntimeError('Configure GOOGLE_API_KEY and GOOGLE_SEARCH_ENGINE_ID to test search requests.')
+query = 'Argentina asylum request to Milei? Reactions to the indictment'.replace(" ", '+')
 
 url = f'https://www.googleapis.com/customsearch/v1?q={query}&key={API_KEY}&cx={SEARCH_ENGINE_ID}'
 

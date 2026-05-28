@@ -1,37 +1,43 @@
-# Banco de dados criado com xampp
+# Database created with XAMPP
 
-# usuário 'root'
-# senha ''
+# user: 'root'
+# password: ''
 
-# query padrão: INSERT INTO `mostra` (`Dia`, `Url`) VALUES (current_timestamp(), 'AQUI VAI A URL');
+# default query: INSERT INTO `science_fair_results` (`CreatedAt`, `Url`) VALUES (current_timestamp(), 'URL_GOES_HERE');
 
-#banco de dados: Mostra
-# tabela: mostra
+# database: ScienceFair
+# table: science_fair_results
+
+import os
 
 import mysql.connector
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 def save_in_db(query):
     try:
         cnx = mysql.connector.connect(
-            host='127.0.0.1',
-            user='root',
-            password='',
-            database='Mostra'
+            host=os.getenv('MYSQL_HOST', '127.0.0.1'),
+            user=os.getenv('MYSQL_USER', 'root'),
+            password=os.getenv('MYSQL_PASSWORD', ''),
+            database=os.getenv('MYSQL_DATABASE', 'ScienceFair')
         )
-        print("Conexão bem sucedida!")
+        print("Connection successful!")
 
         cursor = cnx.cursor()
         cursor.execute(query)
 
-        cnx.commit()  # <- ESSENCIAL!
-        print("Inserção realizada com sucesso!")
+        cnx.commit()  # Essential for saving the insert.
+        print("Insert completed successfully!")
 
     except mysql.connector.Error as err:
-        print(f"Ocorreu um erro: {err}")
+        print(f"An error occurred: {err}")
 
     finally:
         if 'cursor' in locals() and cursor:
             cursor.close()
         if 'cnx' in locals() and cnx.is_connected():
             cnx.close()
-            print("Fechando conexão com o banco!")
+            print("Closing the database connection!")

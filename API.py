@@ -18,8 +18,8 @@ def title():
     return send_file("Site/title.html")
 
 @app.route("/check")
-def escolha():
-    return send_file("Site/escolha.html")
+def choice():
+    return send_file("Site/choice.html")
 
 @app.route("/script.js")
 def js():
